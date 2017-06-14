@@ -1,0 +1,48 @@
+<h4> <span data-bind="text:selectedRow">2</span>X<span data-bind="text:selectedCol">3</span>=<span data-bind="text:selectedCel">6</span></h4>
+
+<p data-bind='text: message'></p>
+
+<button data-bind='click: reset'>Reset me</button>
+
+ <table>
+        <tbody data-bind="foreach: model">
+            <tr data-bind="foreach: $data">
+                <td data-bind="text: $data || 'X', 
+                        click : $parents[1].click($parentContext.$index(), $index()), 
+                        css: {
+                                row : $parents[1].selectedRow() === $parentContext.$index(),
+                                col : $parents[1].selectedCol() === $index(),
+                                row0 : 0 === $parentContext.$index(),
+                                col0 : 0 === $index()
+                            }">
+                </td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="display">
+        <div>
+            <span data-bind="text:selectedRow">2</span>X<span data-bind="text:selectedCol">3</span>=<span data-bind="text:selectedCel">6</span>
+        </div>
+
+        <div>
+            <span data-bind="text:selectedCol">3</span>X<span data-bind="text:selectedRow">3</span>=<span data-bind="text:selectedCel">6</span>
+        </div>
+
+        <div>
+            <span data-bind="text:selectedRow">2</span>=<span data-bind="text:selectedCel">3</span>:<span data-bind="text:selectedCol">6</span>
+        </div>
+
+        <div>
+            <span data-bind="text:selectedCol">2</span>=<span data-bind="text:selectedCel">3</span>:<span data-bind="text:selectedRow">6</span>
+        </div>
+
+        <div data-bind="if :selectedCol() === selectedRow() "> 
+            <span data-bind="text:selectedRow"></span>=√<span data-bind="text:selectedCel">3</span>
+        </div>
+
+        
+
+
+    </div>
