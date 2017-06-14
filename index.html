@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+    <table>
+        <tbody data-bind="foreach: model">
+            <tr data-bind="foreach: $data">
+                <td data-bind="text: $data || 'X', 
+                        click : $root.click($parentContext.$index(), $index()), 
+                        css: {
+                                row : model.selectedRow() === $parentContext.$index(),
+                                col : model.selectedCol() === $index(),
+                                row0 : 0 === $parentContext.$index(),
+                                col0 : 0 === $index()
+                            }">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="display">
+        <div>
+            <span data-bind="text:selectedRow">2</span>X<span data-bind="text:selectedCol">3</span>=<span data-bind="text:selectedCel">6</span>
+        </div>
+
+        <div>
+            <span data-bind="text:selectedCol">3</span>X<span data-bind="text:selectedRow">3</span>=<span data-bind="text:selectedCel">6</span>
+        </div>
+
+        <div>
+            <span data-bind="text:selectedRow">2</span>=<span data-bind="text:selectedCel">3</span>:<span data-bind="text:selectedCol">6</span>
+        </div>
+
+        <div>
+            <span data-bind="text:selectedCol">2</span>=<span data-bind="text:selectedCel">3</span>:<span data-bind="text:selectedRow">6</span>
+        </div>
+
+        <div data-bind="if :selectedCol() === selectedRow() "> 
+            <span data-bind="text:selectedRow"></span>=√<span data-bind="text:selectedCel">3</span>
+        </div>
+
+        
+
+
+    </div>
+
+</body>
+<script src="knockout.debug.js"></script>
+<script src="main.js"></script>
+
+</html>
